@@ -43,27 +43,3 @@ tags, LOC ids, cultivar-specific codes, and free-text identifiers across
 all of those formats, so this field isn't spot-checked automatically.
 The NCBI accession checks are the reliable substitute.
 
-## Findings already surfaced (from the offline pre-run)
-Ran the no-network checks against your file already — 18 flags out of 58
-records, worth a look before you even run the online pass:
-
-- **Likely real data errors (MW mismatches >3%):**
-  - Record 4, **WAK2**: stated 42.32 kDa vs. recalculated 81.64 kDa for a
-    732-aa protein — the recalculated value fits the protein length; the
-    stated MW looks like a copy-paste error from a different record.
-  - Record 3, **WAK1**: stated 95.83 kDa vs. recalculated 81.21 kDa (15% off)
-  - Record 1, **GRP-3**: stated 14.89 vs. 14.29 kDa (4% off)
-  - Record 42, **ERF1**: stated 23.87 vs. 24.69 kDa (3.5% off)
-- **CDS doesn't translate cleanly to the stated protein:**
-  - Record 14, **GLR2.8**: translated CDS is 948 aa, stated protein is 947 aa,
-    first mismatch at position 1 — worth checking for an off-by-one or a
-    stray residue.
-- **CDS not found as a substring of the genomic/full sequence** (may be fine
-  if the full sequence given is a different isoform/region, but worth a
-  glance): Record 6 (**Stb6**), Record 33 (**WRKY33**)
-- **Stray whitespace/newlines in ID fields** (cosmetic, but will break exact
-  lookups if not cleaned first): records 5, 8, 11, 15, 17, 27, 36, 40, 55, 59
-  — full detail in the CSV.
-
-Full detail (field, issue type, description) is in
-`offline_check_report_prerun.csv`.
